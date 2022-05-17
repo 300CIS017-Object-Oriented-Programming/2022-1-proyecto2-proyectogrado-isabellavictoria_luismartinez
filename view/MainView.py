@@ -7,12 +7,16 @@ from streamlit_option_menu import option_menu
 ##from model.Metrica import Metrica
 
 from view.AboutPartial import *
-from view.PartialActa import *
+from view.Jurado_View import *
+from view.Asistente_View import *
+from controller import Controlador
 
 
 class MainView:
 
+
     def __init__(self) -> None:
+        self.controller = Controlador()
         super().__init__()
 
         if 'main_view' not in st.session_state:
@@ -52,6 +56,8 @@ class MainView:
                 st.write("")
         elif self.menu_actual == "[OtroMenu]Mi Menu":
             self.ver_ejemplo()
+        elif self.menu_actual == "Asistente":
+            asistente_partial(st, self.controller)
         elif self.menu_actual == "Jurado":
             jurado_partial(st)
 

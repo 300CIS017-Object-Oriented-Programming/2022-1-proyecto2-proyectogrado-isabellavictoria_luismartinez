@@ -5,7 +5,9 @@ from streamlit_option_menu import option_menu
 ##from controller.MercadoController import MercadoController
 ##from model.Consulta import Consulta
 ##from model.Metrica import Metrica
+
 from view.AboutPartial import *
+from view.PartialActa import *
 
 
 class MainView:
@@ -25,12 +27,12 @@ class MainView:
 
     def _inicialializar_layout(self):
         # Set page title, icon, layout wide (more used space in central area) and sidebar initial state
-        st.set_page_config(page_title="Análisis mercado energía", page_icon='', layout="wide",
+        st.set_page_config(page_title="Servicio de revision de Proyectos de Grado - Javeriana Cali", page_icon='', layout="wide",
                            initial_sidebar_state="expanded")
         # Defines the number of available columns del area principal
         self.col1, self.col2, self.col3 = st.columns([1, 1, 1])
 
-        # Define lo que abrá en la barra de menu
+        # Define lo que habrá en la barra de menu
         with st.sidebar:
             self.menu_actual = option_menu("Menu", ["Asistente","Jurado", "Director@","About"],
                                            icons=['house', 'gear'], menu_icon="cast", default_index=1)
@@ -50,6 +52,8 @@ class MainView:
                 st.write("")
         elif self.menu_actual == "[OtroMenu]Mi Menu":
             self.ver_ejemplo()
+        elif self.menu_actual == "Jurado":
+            jurado_partial(st)
 
 
 # Main call

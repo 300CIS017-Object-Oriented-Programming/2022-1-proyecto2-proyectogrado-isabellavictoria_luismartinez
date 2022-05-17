@@ -2,9 +2,9 @@ import streamlit as st
 from pydataxm.pydataxm import ReadDB
 from streamlit_option_menu import option_menu
 
-from controller.MercadoController import MercadoController
-from model.Consulta import Consulta
-from model.Metrica import Metrica
+##from controller.MercadoController import MercadoController
+##from model.Consulta import Consulta
+##from model.Metrica import Metrica
 from view.AboutPartial import *
 
 
@@ -32,7 +32,7 @@ class MainView:
 
         # Define lo que abrá en la barra de menu
         with st.sidebar:
-            self.menu_actual = option_menu("Menu", ["About", '[OtroMenu]Mi Menu'],
+            self.menu_actual = option_menu("Menu", ["Asistente","Jurado", "Director@","About"],
                                            icons=['house', 'gear'], menu_icon="cast", default_index=1)
 
     def ver_ejemplo(self):

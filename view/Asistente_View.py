@@ -1,4 +1,8 @@
+from model.Acta import Acta
+from view import MainView
+
 def asistente_partial(st, controller):
+
     st.title("Portal de creacion de Actas")
 
     numero_acta = st.text_input("Numero del acta")

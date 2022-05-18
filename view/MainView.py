@@ -9,7 +9,7 @@ from streamlit_option_menu import option_menu
 from view.AboutPartial import *
 from view.Jurado_View import *
 from view.Asistente_View import *
-from controller import Controlador
+from controller.Controlador import *
 
 
 class MainView:

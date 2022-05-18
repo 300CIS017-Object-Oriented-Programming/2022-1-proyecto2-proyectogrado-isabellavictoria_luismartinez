@@ -9,7 +9,7 @@ from streamlit_option_menu import option_menu
 from view.AboutPartial import *
 from view.Jurado_View import *
 from view.Asistente_View import *
-from controller.Controlador import Controlador
+from controller.Controlador import *
 
 
 class MainView:
@@ -59,7 +59,7 @@ class MainView:
         elif self.menu_actual == "Asistente":
             asistente_partial(st, self.controller)
         elif self.menu_actual == "Jurado":
-            jurado_partial(st)
+            jurado_partial(st, self.controller)
 
 
 # Main call

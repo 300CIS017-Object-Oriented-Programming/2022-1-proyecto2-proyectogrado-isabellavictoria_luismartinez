@@ -14,7 +14,6 @@ from controller.Controlador import *
 
 class MainView:
 
-
     def __init__(self) -> None:
         self.controller = Controlador()
         super().__init__()

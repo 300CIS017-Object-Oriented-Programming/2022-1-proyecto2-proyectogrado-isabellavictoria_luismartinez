@@ -7,5 +7,6 @@ class DetalleCriterio:
         self.comentario = comentario
         self.nota_criterio = nota_criterio
 
-
-
+    def calcular_nota_criterio(self, calificacion1, calificacion2, identificador_criterio, controller):
+        self.nota_criterio = (calificacion1 + calificacion2) * \
+                             controller.criterios[identificador_criterio].porcentaje_ponderacion

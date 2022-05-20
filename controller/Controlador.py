@@ -21,4 +21,3 @@ class Controlador:
                           7: Criterio(7, "Calidad y presentación del documento escrito",
                                       "", 0.075),
                           8: Criterio(8, "Presentación oral", "", 0.075)}
-

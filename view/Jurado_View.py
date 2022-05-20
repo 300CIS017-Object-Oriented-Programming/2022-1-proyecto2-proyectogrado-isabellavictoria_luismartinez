@@ -5,8 +5,6 @@ def jurado_partial(st, controller):
 
     st.title("Portal de calificacion de actas")
 
-    nombre_jurado1 = st.text_input("Nombre del Jurado 1")
-    nombre_jurado2 = st.text_input("Nombre del Jurado 2")
     identificador_acta = st.text_input("Ingrese el identificador del acta por calificar")
 
     if st.button("Buscar acta"):
@@ -32,12 +30,14 @@ def jurado_partial(st, controller):
                 if choice1 == "Si":
                     predeterminado = st.selectbox("Elija la opcion predeterminada", [""])
                     detalle = DetalleCriterio(identificador_criterio, calificacion1, calificacion2, predeterminado,
-                                              controller.calcular_nota_criterio(calificacion1, calificacion2))
+                                              controller.calcular_nota_criterio(calificacion1, calificacion2,
+                                                                                identificador_criterio, controller))
                     controller.actas[identificador_acta].detalles_criterio[identificador_criterio] = detalle
                 else:
                     comentario = st.text_input("Comentarios de los jurados")
                     detalle = DetalleCriterio(identificador_criterio, calificacion1, calificacion2, comentario,
-                                              controller.calcular_nota_criterio(calificacion1, calificacion2))
+                                              controller.calcular_nota_criterio(calificacion1, calificacion2,
+                                                                                identificador_criterio, controller))
                     controller.actas[identificador_acta].detalles_criterio[identificador_criterio] = detalle
 
             elif criterio == "Desafío académico y científico del tema":
@@ -48,13 +48,15 @@ def jurado_partial(st, controller):
                 choice1 = st.radio("¿Desea utilizar un comentario predeterminado?", ["Si", "No"])
                 if choice1 == "Si":
                     predeterminado = st.selectbox("Elija la opcion predeterminada", [""])
-                    detalle = DetalleCriterio(identificador_criterio, calificacion1, calificacion2, predeterminado,
-                                              controller.calcular_nota_criterio(calificacion1, calificacion2))
+                    detalle = DetalleCriterio(identificador_criterio, calificacion1, calificacion2, predeterminado, 0.0)
+                    detalle.nota_criterio = detalle.calcular_nota_criterio(calificacion1, calificacion2,
+                                                                           identificador_criterio, controller)
                     controller.actas[identificador_acta].detalles_criterio[identificador_criterio] = detalle
                 else:
                     comentario = st.text_input("Comentarios de los jurados")
-                    detalle = DetalleCriterio(identificador_criterio, calificacion1, calificacion2, comentario,
-                                              controller.calcular_nota_criterio(calificacion1, calificacion2))
+                    detalle = DetalleCriterio(identificador_criterio, calificacion1, calificacion2, comentario, 0.0)
+                    detalle.nota_criterio = detalle.calcular_nota_criterio(calificacion1, calificacion2,
+                                                                           identificador_criterio, controller)
                     controller.actas[identificador_acta].detalles_criterio[identificador_criterio] = detalle
 
             elif criterio == "Cumplimiento de los objetivos propuestos":
@@ -65,13 +67,15 @@ def jurado_partial(st, controller):
                 choice1 = st.radio("¿Desea utilizar un comentario predeterminado?", ["Si", "No"])
                 if choice1 == "Si":
                     predeterminado = st.selectbox("Elija la opcion predeterminada", [""])
-                    detalle = DetalleCriterio(identificador_criterio, calificacion1, calificacion2, predeterminado,
-                                              controller.calcular_nota_criterio(calificacion1, calificacion2))
+                    detalle = DetalleCriterio(identificador_criterio, calificacion1, calificacion2, predeterminado, 0.0)
+                    detalle.nota_criterio = detalle.calcular_nota_criterio(calificacion1, calificacion2,
+                                                                           identificador_criterio, controller)
                     controller.actas[identificador_acta].detalles_criterio[identificador_criterio] = detalle
                 else:
                     comentario = st.text_input("Comentarios de los jurados")
-                    detalle = DetalleCriterio(identificador_criterio, calificacion1, calificacion2, comentario,
-                                              controller.calcular_nota_criterio(calificacion1, calificacion2))
+                    detalle = DetalleCriterio(identificador_criterio, calificacion1, calificacion2, comentario, 0.0)
+                    detalle.nota_criterio = detalle.calcular_nota_criterio(calificacion1, calificacion2,
+                                                                           identificador_criterio, controller)
                     controller.actas[identificador_acta].detalles_criterio[identificador_criterio] = detalle
 
             elif criterio == "Creatividad e innovación de las soluciones y desarrollos propuestos":
@@ -82,13 +86,15 @@ def jurado_partial(st, controller):
                 choice1 = st.radio("¿Desea utilizar un comentario predeterminado?", ["Si", "No"])
                 if choice1 == "Si":
                     predeterminado = st.selectbox("Elija la opcion predeterminada", [""])
-                    detalle = DetalleCriterio(identificador_criterio, calificacion1, calificacion2, predeterminado,
-                                              controller.calcular_nota_criterio(calificacion1, calificacion2))
+                    detalle = DetalleCriterio(identificador_criterio, calificacion1, calificacion2, predeterminado, 0.0)
+                    detalle.nota_criterio = detalle.calcular_nota_criterio(calificacion1, calificacion2,
+                                                                           identificador_criterio, controller)
                     controller.actas[identificador_acta].detalles_criterio[identificador_criterio] = detalle
                 else:
                     comentario = st.text_input("Comentarios de los jurados")
-                    detalle = DetalleCriterio(identificador_criterio, calificacion1, calificacion2, comentario,
-                                              controller.calcular_nota_criterio(calificacion1, calificacion2))
+                    detalle = DetalleCriterio(identificador_criterio, calificacion1, calificacion2, comentario, 0.0)
+                    detalle.nota_criterio = detalle.calcular_nota_criterio(calificacion1, calificacion2,
+                                                                           identificador_criterio, controller)
                     controller.actas[identificador_acta].detalles_criterio[identificador_criterio] = detalle
 
             elif criterio == "Validez de los resultados y conclusiones":
@@ -99,13 +105,15 @@ def jurado_partial(st, controller):
                 choice1 = st.radio("¿Desea utilizar un comentario predeterminado?", ["Si", "No"])
                 if choice1 == "Si":
                     predeterminado = st.selectbox("Elija la opcion predeterminada", [""])
-                    detalle = DetalleCriterio(identificador_criterio, calificacion1, calificacion2, predeterminado,
-                                              controller.calcular_nota_criterio(calificacion1, calificacion2))
+                    detalle = DetalleCriterio(identificador_criterio, calificacion1, calificacion2, predeterminado, 0.0)
+                    detalle.nota_criterio = detalle.calcular_nota_criterio(calificacion1, calificacion2,
+                                                                           identificador_criterio, controller)
                     controller.actas[identificador_acta].detalles_criterio[identificador_criterio] = detalle
                 else:
                     comentario = st.text_input("Comentarios de los jurados")
-                    detalle = DetalleCriterio(identificador_criterio, calificacion1, calificacion2, comentario,
-                                              controller.calcular_nota_criterio(calificacion1, calificacion2))
+                    detalle = DetalleCriterio(identificador_criterio, calificacion1, calificacion2, comentario, 0.0)
+                    detalle.nota_criterio = detalle.calcular_nota_criterio(calificacion1, calificacion2,
+                                                                           identificador_criterio, controller)
                     controller.actas[identificador_acta].detalles_criterio[identificador_criterio] = detalle
 
             elif criterio == "Manejo y procesamiento de la información y bibliografía":
@@ -116,13 +124,15 @@ def jurado_partial(st, controller):
                 choice1 = st.radio("¿Desea utilizar un comentario predeterminado?", ["Si", "No"])
                 if choice1 == "Si":
                     predeterminado = st.selectbox("Elija la opcion predeterminada", [""])
-                    detalle = DetalleCriterio(identificador_criterio, calificacion1, calificacion2, predeterminado,
-                                              controller.calcular_nota_criterio(calificacion1, calificacion2))
+                    detalle = DetalleCriterio(identificador_criterio, calificacion1, calificacion2, predeterminado, 0.0)
+                    detalle.nota_criterio = detalle.calcular_nota_criterio(calificacion1, calificacion2,
+                                                                           identificador_criterio, controller)
                     controller.actas[identificador_acta].detalles_criterio[identificador_criterio] = detalle
                 else:
                     comentario = st.text_input("Comentarios de los jurados")
-                    detalle = DetalleCriterio(identificador_criterio, calificacion1, calificacion2, comentario,
-                                              controller.calcular_nota_criterio(calificacion1, calificacion2))
+                    detalle = DetalleCriterio(identificador_criterio, calificacion1, calificacion2, comentario, 0.0)
+                    detalle.nota_criterio = detalle.calcular_nota_criterio(calificacion1, calificacion2,
+                                                                           identificador_criterio, controller)
                     controller.actas[identificador_acta].detalles_criterio[identificador_criterio] = detalle
 
             elif criterio == "Calidad y presentación del documento escrito":
@@ -133,13 +143,15 @@ def jurado_partial(st, controller):
                 choice1 = st.radio("¿Desea utilizar un comentario predeterminado?", ["Si", "No"])
                 if choice1 == "Si":
                     predeterminado = st.selectbox("Elija la opcion predeterminada", [""])
-                    detalle = DetalleCriterio(identificador_criterio, calificacion1, calificacion2, predeterminado,
-                                              controller.calcular_nota_criterio(calificacion1, calificacion2))
+                    detalle = DetalleCriterio(identificador_criterio, calificacion1, calificacion2, predeterminado, 0.0)
+                    detalle.nota_criterio = detalle.calcular_nota_criterio(calificacion1, calificacion2,
+                                                                           identificador_criterio, controller)
                     controller.actas[identificador_acta].detalles_criterio[identificador_criterio] = detalle
                 else:
                     comentario = st.text_input("Comentarios de los jurados")
-                    detalle = DetalleCriterio(identificador_criterio, calificacion1, calificacion2, comentario,
-                                              controller.calcular_nota_criterio(calificacion1, calificacion2))
+                    detalle = DetalleCriterio(identificador_criterio, calificacion1, calificacion2, comentario, 0.0)
+                    detalle.nota_criterio = detalle.calcular_nota_criterio(calificacion1, calificacion2,
+                                                                           identificador_criterio, controller)
                     controller.actas[identificador_acta].detalles_criterio[identificador_criterio] = detalle
 
             elif criterio == "Presentación oral":
@@ -150,13 +162,15 @@ def jurado_partial(st, controller):
                 choice1 = st.radio("¿Desea utilizar un comentario predeterminado?", ["Si", "No"])
                 if choice1 == "Si":
                     predeterminado = st.selectbox("Elija la opcion predeterminada", [""])
-                    detalle = DetalleCriterio(identificador_criterio, calificacion1, calificacion2, predeterminado,
-                                              controller.calcular_nota_criterio(calificacion1, calificacion2))
+                    detalle = DetalleCriterio(identificador_criterio, calificacion1, calificacion2, predeterminado, 0.0)
+                    detalle.nota_criterio = detalle.calcular_nota_criterio(calificacion1, calificacion2,
+                                                                           identificador_criterio, controller)
                     controller.actas[identificador_acta].detalles_criterio[identificador_criterio] = detalle
                 else:
                     comentario = st.text_input("Comentarios de los jurados")
-                    detalle = DetalleCriterio(identificador_criterio, calificacion1, calificacion2, comentario,
-                                              controller.calcular_nota_criterio(calificacion1, calificacion2))
+                    detalle = DetalleCriterio(identificador_criterio, calificacion1, calificacion2, comentario, 0.0)
+                    detalle.nota_criterio = detalle.calcular_nota_criterio(calificacion1, calificacion2,
+                                                                           identificador_criterio, controller)
                     controller.actas[identificador_acta].detalles_criterio[identificador_criterio] = detalle
             if st.button("Enviar calificaciones") and len(controller.actas[identificador_acta].detalles_criterio) == 8:
                 st.success("Las calificaciones se han agregado exitosamente")

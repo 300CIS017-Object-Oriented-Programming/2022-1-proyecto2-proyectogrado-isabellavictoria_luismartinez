@@ -17,17 +17,19 @@ from controller.Controlador import *
 class MainView:
 
     def __init__(self) -> None:
-        self.controller = Controlador()
+        #self.controller = Controlador()
         super().__init__()
 
         if 'main_view' not in st.session_state:
             self.menu_actual = "About"
+            self.controller = Controlador()
             # Inicialización de las variables necesarias
 
             st.session_state['main_view'] = self
         else:
             self.menu_actual = st.session_state.main_view.menu_actual
              # Carga de las variables necesarias
+            self.controller = st.session_state.main_view.controller
         self._inicialializar_layout()
 
     def _inicialializar_layout(self):

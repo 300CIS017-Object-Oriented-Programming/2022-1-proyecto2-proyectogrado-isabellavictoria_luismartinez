@@ -1,6 +1,5 @@
 from model.Acta import Acta
 
-
 def asistente_partial(st, controller):
 
     st.title("Portal de creacion de Actas")

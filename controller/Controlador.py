@@ -3,7 +3,7 @@ from model.Criterio import Criterio
 
 class Controlador:
     def __init__(self) -> None:
-
+        super().__init__()
         self.actas = {}
         self.current_length = 0
         self.criterios = {1: Criterio(1, "Desarrollo y profundidad en el tratamiento del tema",

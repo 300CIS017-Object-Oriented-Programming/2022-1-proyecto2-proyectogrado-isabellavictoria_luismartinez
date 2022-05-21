@@ -15,6 +15,7 @@ def director_partial(st, controller):
         criterio_modificar = st.selectbox("Seleccione el identificador del criterio que desea modificar",
                                           list(criterios))
         controller.mostrar_criterio(criterio_modificar)
+        controller.recolectar_datos_criterio(criterio_modificar)
     elif opcion == "Agregar criterio":
         pass
     elif opcion == "Eliminar criterio":

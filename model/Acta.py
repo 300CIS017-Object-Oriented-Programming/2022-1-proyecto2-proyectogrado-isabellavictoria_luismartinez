@@ -1,7 +1,7 @@
 
 class Acta:
     def __init__(self, numero_acta, fecha, id_estudiante, nombre_estudiante,
-                       periodo, titulo_trabajo, tipo_trabajo, nombre_director,
+                       periodo, titulo_trabajo,enfasis, tipo_trabajo, nombre_director,
                        nombre_codirector, nombre_jurado1, nombre_jurado2,
                        criterios, detalles_criterio, comentarios_adicionales,
                        nota_trabajo, estado):
@@ -11,6 +11,7 @@ class Acta:
         self.nombre_estudiante = nombre_estudiante
         self.periodo = periodo
         self.titulo_trabajo = titulo_trabajo
+        self.enfasis = enfasis
         self.tipo_trabajo = tipo_trabajo
         self.nombre_director = nombre_director
         self.nombre_codirector = nombre_codirector
@@ -21,3 +22,4 @@ class Acta:
         self.comentarios_adicionales = comentarios_adicionales
         self.nota_trabajo = nota_trabajo
         self.estado = estado
+

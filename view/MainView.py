@@ -10,7 +10,7 @@ from view.AboutPartial import *
 from view.Jurado_View import *
 from view.Asistente_View import *
 from view.Director_View import *
-from view.Pdf_Prueba import exportar_acta
+from view.Pdf_View import *
 from controller.Controlador import *
 
 
@@ -68,9 +68,7 @@ class MainView:
         elif self.menu_actual == "Director@":
             director_partial(st, self.controller)
         elif self.menu_actual == "PDF":
-            exportar_acta(st)
-
-
+            generar_pdf(st,self.controller)
 
 # Main call
 if __name__ == "__main__":

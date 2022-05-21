@@ -9,8 +9,10 @@ from streamlit_option_menu import option_menu
 from view.AboutPartial import *
 from view.Jurado_View import *
 from view.Asistente_View import *
+from view.Director_View import *
 from view.Pdf_Prueba import exportar_acta
 from controller.Controlador import *
+
 
 
 
@@ -63,6 +65,8 @@ class MainView:
             asistente_partial(st, self.controller)
         elif self.menu_actual == "Jurado":
             jurado_partial(st, self.controller)
+        elif self.menu_actual == "Director@":
+            director_partial(st, self.controller)
         elif self.menu_actual == "PDF":
             exportar_acta(st)
 

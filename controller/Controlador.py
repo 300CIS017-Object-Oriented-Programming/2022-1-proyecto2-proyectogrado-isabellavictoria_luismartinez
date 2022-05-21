@@ -1,3 +1,5 @@
+import streamlit as st
+
 from model.Criterio import Criterio
 
 
@@ -27,3 +29,15 @@ class Controlador:
         nota_criterio = ((float(calificacion1) + float(calificacion2)) / 2) * ponderado
 
         return nota_criterio
+
+    def mostrar_criterio(self, identificador_criterio):
+
+        with st.expander("Detalles del Criterio"):
+            st.subheader("Nombre del criterio")
+            st.write(self.criterios[identificador_criterio].nombre_criterio)
+
+            st.subheader("Descripcion del criterio")
+            st.write(self.criterios[identificador_criterio].descripcion_criterio)
+
+            st.subheader("Ponderado del criterio")
+            st.write(str(self.criterios[identificador_criterio].porcentaje_ponderacion * 100) + "%")

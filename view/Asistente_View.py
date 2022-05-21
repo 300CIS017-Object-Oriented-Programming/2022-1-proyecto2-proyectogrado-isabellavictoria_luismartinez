@@ -2,7 +2,7 @@ from model.Acta import Acta
 
 def asistente_partial(st, controller):
 
-    st.title("Portal de creacion de Actas")
+    st.title("Portal de creación de Actas")
 
     numero_acta = st.text_input("Numero del acta")
     fecha = st.date_input("Fecha de creacion del acta")

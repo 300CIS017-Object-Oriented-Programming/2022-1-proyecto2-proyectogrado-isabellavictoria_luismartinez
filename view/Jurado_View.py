@@ -25,7 +25,7 @@ def recolectar_datos_detalle_criterio(st, controller, identificador_criterio, id
 
 def jurado_partial(st, controller):
 
-    st.title("Portal de calificacion de actas")
+    st.title("Portal de calificación de actas")
 
     actas = controller.actas.keys()
     identificador_acta = st.selectbox("Seleccione el identificador del acta por calificar", list(actas))

@@ -40,27 +40,15 @@ def jurado_partial(st, controller):
             comentarios_adicionales = st.text_area("Ingrese las observaciones para aprobar el trabajo de grado o "
                                                "alguna otra observación fuera de los criterios:")
 
-<<<<<<< HEAD
-    if st.button("Enviar calificaciones"):
-        if len(controller.actas[identificador_acta].detalles_criterio) != controller.current_length_criterios:
-            st.error("Faltan criterios por calificar, no se puede calcular nota del trabajo")
-        else:
-            nota_trabajo = controller.calcular_nota_trabajo(identificador_acta)
-            controller.actas[identificador_acta].nota_trabajo = nota_trabajo
-            controller.actas[identificador_acta].comentarios_adicionales = comentarios_adicionales
-            st.success("Las calificaciones se han agregado exitosamente")
-            controller.actas[identificador_acta].estado = "Calificada"
-
-=======
         if st.button("Enviar calificaciones"):
             if len(controller.actas[identificador_acta].detalles_criterio) != controller.current_length_criterios:
                 st.error("Faltan criterios por calificar, no se puede calcular nota del trabajo")
             else:
-                controller.calcular_nota_trabajo(identificador_acta)
+                nota_trabajo = controller.calcular_nota_trabajo(identificador_acta)
+                controller.actas[identificador_acta].nota_trabajo = nota_trabajo
                 controller.actas[identificador_acta].comentarios_adicionales = comentarios_adicionales
                 st.success("Las calificaciones se han agregado exitosamente")
                 controller.actas[identificador_acta].estado = "Calificada"
     else:
         raise ValueError("No hay actas creadas actualmente")
->>>>>>> 4993d016d9b12b0636196014acd87d6ebc687e6f
 

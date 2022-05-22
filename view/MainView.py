@@ -10,10 +10,9 @@ from view.AboutPartial import *
 from view.Jurado_View import *
 from view.Asistente_View import *
 from view.Director_View import *
+from view.Historial_View import *
 from view.Pdf_View import *
 from controller.Controlador import *
-
-
 
 
 class MainView:
@@ -36,14 +35,15 @@ class MainView:
 
     def _inicialializar_layout(self):
         # Set page title, icon, layout wide (more used space in central area) and sidebar initial state
-        st.set_page_config(page_title="Servicio de revision de Proyectos de Grado - Javeriana Cali", page_icon='http://www.icesi.edu.co/biblioteca/wp-content/uploads/2022/02/pontificia-universidad-javeriana-cali.jpg', layout="wide",
+        st.set_page_config(page_title="Servicio de revision de Proyectos de Grado - Javeriana Cali",
+                           page_icon='http://www.icesi.edu.co/biblioteca/wp-content/uploads/2022/02/pontificia-universidad-javeriana-cali.jpg', layout="wide",
                            initial_sidebar_state="expanded")
         # Defines the number of available columns del area principal
         self.col1, self.col2, self.col3 = st.columns([1, 1, 1])
 
         # Define lo que habrá en la barra de menu
         with st.sidebar:
-            self.menu_actual = option_menu("Menu", ["Asistente","Jurado", "Director@","PDF","About"],
+            self.menu_actual = option_menu("Menu", ["Asistente","Jurado", "Director@","PDF", "Historial", "About"],
                                            icons=['bi bi-file-earmark-person', 'bi bi-clipboard-check','bi bi-person-bounding-box','bi bi-file-earmark-pdf', 'bi bi-emoji-sunglasses'], menu_icon="cast", default_index=0)
 
     def ver_ejemplo(self):
@@ -71,7 +71,9 @@ class MainView:
             try:
                 generar_pdf(st,self.controller)
             except ValueError:
-                    st.error("No hay actas creadas o estan sin calificar")
+                    st.error("No hay actas creadas o están sin calificar")
+        elif self.menu_actual == "Historial":
+            historial_partial(st, self.controller)
 
 # Main call
 if __name__ == "__main__":

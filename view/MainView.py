@@ -15,8 +15,6 @@ from view.Pdf_View import *
 from controller.Controlador import *
 
 
-
-
 class MainView:
 
     def __init__(self) -> None:
@@ -45,7 +43,9 @@ class MainView:
         # Define lo que habrá en la barra de menu
         with st.sidebar:
             self.menu_actual = option_menu("Menu", ["Asistente","Jurado", "Director@","PDF","Historial", "About"],
-                                           icons=['bi bi-file-earmark-person', 'bi bi-clipboard-check','bi bi-person-bounding-box','bi bi-file-earmark-pdf', 'bi bi-emoji-sunglasses'], menu_icon="cast", default_index=0)
+                                           icons=['bi bi-file-earmark-person', 'bi bi-clipboard-check',
+                                                  'bi bi-person-bounding-box','bi bi-file-earmark-pdf',
+                                                  'bi bi-clock-history'], menu_icon="cast", default_index=0)
 
     def ver_ejemplo(self):
         pass
@@ -77,7 +77,9 @@ class MainView:
             try:
                 generar_pdf(st, self.controller)
             except ValueError:
-                    st.error("No hay actas creadas")
+                st.error("No hay actas creadas")
+            except FileNotFoundError:
+                st.error("El acta no ha sido calificada")
 
 # Main call
 if __name__ == "__main__":

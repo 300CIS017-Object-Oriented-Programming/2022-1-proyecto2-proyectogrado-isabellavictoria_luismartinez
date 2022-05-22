@@ -44,11 +44,15 @@ def jurado_partial(st, controller):
             if len(controller.actas[identificador_acta].detalles_criterio) != controller.current_length_criterios:
                 st.error("Faltan criterios por calificar, no se puede calcular nota del trabajo")
             else:
-                nota_trabajo = controller.calcular_nota_trabajo(identificador_acta)
+                nota_trabajo = round(controller.calcular_nota_trabajo(identificador_acta), 2)
                 controller.actas[identificador_acta].nota_trabajo = nota_trabajo
                 controller.actas[identificador_acta].comentarios_adicionales = comentarios_adicionales
                 st.success("Las calificaciones se han agregado exitosamente")
-                controller.actas[identificador_acta].estado = "Calificada"
+                if nota_trabajo > 3.0:
+                    controller.actas[identificador_acta].estado = "Aprobado - Calificada"
+                else:
+                        controller.actas[identificador_acta].estado = "Reprobado - Calificada"
+
     else:
         raise ValueError("No hay actas creadas actualmente")
 

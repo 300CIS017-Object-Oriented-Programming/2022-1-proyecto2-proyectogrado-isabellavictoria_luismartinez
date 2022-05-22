@@ -24,29 +24,30 @@ def recolectar_datos_detalle_criterio(st, controller, identificador_criterio, id
 
 
 def jurado_partial(st, controller):
+    if len(controller.actas) != 0:
+        st.title("Portal de calificación de actas")
 
-    st.title("Portal de calificación de actas")
+        actas = controller.actas.keys()
+        identificador_acta = st.selectbox("Seleccione el identificador del acta por calificar", list(actas))
 
-    actas = controller.actas.keys()
-    identificador_acta = st.selectbox("Seleccione el identificador del acta por calificar", list(actas))
+        for i in range(1, len(controller.criterios) + 1):
 
-    for i in range(1, len(controller.criterios) + 1):
+            with st.expander(controller.criterios[i].nombre_criterio):
+                identificador_criterio = str(i)
+                recolectar_datos_detalle_criterio(st, controller, identificador_criterio, identificador_acta)
 
-        with st.expander(controller.criterios[i].nombre_criterio):
-            identificador_criterio = str(i)
-            recolectar_datos_detalle_criterio(st, controller, identificador_criterio, identificador_acta)
-
-    with st.expander("Comentarios adicionales"):
-        comentarios_adicionales = st.text_area("Ingrese las observaciones para aprobar el trabajo de grado o "
+        with st.expander("Comentarios adicionales"):
+            comentarios_adicionales = st.text_area("Ingrese las observaciones para aprobar el trabajo de grado o "
                                                "alguna otra observación fuera de los criterios:")
 
-    if st.button("Enviar calificaciones"):
-        if len(controller.actas[identificador_acta].detalles_criterio) != controller.current_length_criterios:
-            st.error("Faltan criterios por calificar, no se puede calcular nota del trabajo")
-        else:
-            controller.calcular_nota_trabajo(identificador_acta)
-            controller.actas[identificador_acta].comentarios_adicionales = comentarios_adicionales
-            st.success("Las calificaciones se han agregado exitosamente")
-            controller.actas[identificador_acta].estado = "Calificada"
-
+        if st.button("Enviar calificaciones"):
+            if len(controller.actas[identificador_acta].detalles_criterio) != controller.current_length_criterios:
+                st.error("Faltan criterios por calificar, no se puede calcular nota del trabajo")
+            else:
+                controller.calcular_nota_trabajo(identificador_acta)
+                controller.actas[identificador_acta].comentarios_adicionales = comentarios_adicionales
+                st.success("Las calificaciones se han agregado exitosamente")
+                controller.actas[identificador_acta].estado = "Calificada"
+    else:
+        raise ValueError("No hay actas creadas actualmente")
 

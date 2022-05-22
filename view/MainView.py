@@ -64,14 +64,17 @@ class MainView:
         elif self.menu_actual == "Asistente":
             asistente_partial(st, self.controller)
         elif self.menu_actual == "Jurado":
-            jurado_partial(st, self.controller)
+            try:
+                jurado_partial(st, self.controller)
+            except ValueError:
+                st.error("No hay actas creadas actualmente")
         elif self.menu_actual == "Director@":
             director_partial(st, self.controller)
         elif self.menu_actual == "PDF":
             try:
                 generar_pdf(st,self.controller)
             except ValueError:
-                    st.error("No hay actas creadas o estan sin calificar")
+                    st.error("No hay actas creadas")
 
 # Main call
 if __name__ == "__main__":

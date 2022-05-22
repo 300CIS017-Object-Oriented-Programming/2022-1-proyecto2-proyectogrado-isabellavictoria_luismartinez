@@ -47,17 +47,6 @@ def generar_pdf(st, controller):
         controller.actas[identificador_acta].criterios[x + 1].nombre_criterio),align='L')
         pdf.ln(2)
         pdf.set_font('Arial', size=11)
-<<<<<<< HEAD
-        if controller.actas[identificador_acta].detalles_criterio:
-            if controller.actas[identificador_acta].detalles_criterio[criterios_aux[x + 1].identificador].identificador_criterio == controller.actas[identificador_acta].criterios[x + 1].identificador:
-                pdf.cell(150,5,txt= "Calificación parcial: "+ str(controller.actas[identificador_acta].detalles_criterio[criterios_aux[x + 1].identificador].nota_criterio),ln= 0,align= 'L')
-                pdf.cell(100,5,txt= "Ponderación: "+ str(criterios_aux[x+1].porcentaje_ponderacion * 100) + "%",ln= 1,align='L')
-                pdf.multi_cell(190, 5,txt="Observaciones: " + str(controller.actas[identificador_acta].detalles_criterio[criterios_aux[x + 1].identificador].comentario),align='L')
-                pdf.set_font('Arial', 'B', size=11)
-                pdf.ln(5)
-                pdf.set_font('Arial', size=11)
-                pdf.multi_cell(190, 5,
-=======
         if controller.actas[identificador_acta].detalles_criterio[criterios_aux[x + 1].identificador].identificador_criterio == controller.actas[identificador_acta].criterios[x + 1].identificador:
             pdf.cell(150,5,txt= "Calificación parcial: "+ str(controller.actas[identificador_acta].detalles_criterio[criterios_aux[x + 1].identificador].nota_criterio),ln= 0,align= 'L')
             pdf.cell(100,5,txt= "Ponderación: "+ str(criterios_aux[x+1].porcentaje_ponderacion * 100) + "%",ln= 1,align='L')
@@ -66,7 +55,6 @@ def generar_pdf(st, controller):
             pdf.ln(5)
             pdf.set_font('Arial', size=11)
             pdf.multi_cell(190, 5,
->>>>>>> 4993d016d9b12b0636196014acd87d6ebc687e6f
                                txt="_______________________________________________________________________________________________________________"
                                    "_________________________________________________________________________________________________________________"
                                    ,align='L')

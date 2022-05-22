@@ -53,7 +53,7 @@ def generar_pdf(st, controller):
         pdf.ln(2)
         pdf.set_font('Arial', size=11)
 
-        if len(controller.actas[identificador_acta].detalles_criterio) == 8:
+        if len(controller.actas[identificador_acta].detalles_criterio) == controller.current_length_criterios:
             if controller.actas[identificador_acta].detalles_criterio[criterios_aux[x + 1].identificador].identificador_criterio == controller.actas[identificador_acta].criterios[x + 1].identificador:
                 pdf.cell(150,5,txt= "Calificación parcial: "+ str(controller.actas[identificador_acta].detalles_criterio[criterios_aux[x + 1].identificador].nota_criterio),ln= 0,align= 'L')
                 pdf.cell(100,5,txt= "Ponderación: "+ str(criterios_aux[x+1].porcentaje_ponderacion * 100) + "%",ln= 1,align='L')

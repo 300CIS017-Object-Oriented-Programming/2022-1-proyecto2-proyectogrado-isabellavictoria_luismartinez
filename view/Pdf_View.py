@@ -39,14 +39,15 @@ def generar_pdf(st, controller):
                                   "ponderaciones se estipulan en el artículo 7.1 de las Directrices para Trabajo de Grado de Maestría):", align='L')
         pdf.ln(5)
         pdf.set_font('Arial', 'B', size=11)
-        criterios_aux = controller.actas[identificador_acta].criterios
     else:
         raise ValueError("No hay actas creadas actualmente")
+    criterios_aux = controller.actas[identificador_acta].criterios
     for x in range ( 0, len(criterios_aux),1):
         pdf.multi_cell(190, 5,txt=str(controller.actas[identificador_acta].criterios[x + 1].identificador) + '.  ' + str(
         controller.actas[identificador_acta].criterios[x + 1].nombre_criterio),align='L')
         pdf.ln(2)
         pdf.set_font('Arial', size=11)
+<<<<<<< HEAD
         if controller.actas[identificador_acta].detalles_criterio:
             if controller.actas[identificador_acta].detalles_criterio[criterios_aux[x + 1].identificador].identificador_criterio == controller.actas[identificador_acta].criterios[x + 1].identificador:
                 pdf.cell(150,5,txt= "Calificación parcial: "+ str(controller.actas[identificador_acta].detalles_criterio[criterios_aux[x + 1].identificador].nota_criterio),ln= 0,align= 'L')
@@ -56,42 +57,50 @@ def generar_pdf(st, controller):
                 pdf.ln(5)
                 pdf.set_font('Arial', size=11)
                 pdf.multi_cell(190, 5,
+=======
+        if controller.actas[identificador_acta].detalles_criterio[criterios_aux[x + 1].identificador].identificador_criterio == controller.actas[identificador_acta].criterios[x + 1].identificador:
+            pdf.cell(150,5,txt= "Calificación parcial: "+ str(controller.actas[identificador_acta].detalles_criterio[criterios_aux[x + 1].identificador].nota_criterio),ln= 0,align= 'L')
+            pdf.cell(100,5,txt= "Ponderación: "+ str(criterios_aux[x+1].porcentaje_ponderacion * 100) + "%",ln= 1,align='L')
+            pdf.multi_cell(190, 5,txt="Observaciones: " + str(controller.actas[identificador_acta].detalles_criterio[criterios_aux[x + 1].identificador].comentario),align='L')
+            pdf.set_font('Arial', 'B', size=11)
+            pdf.ln(5)
+            pdf.set_font('Arial', size=11)
+            pdf.multi_cell(190, 5,
+>>>>>>> 4993d016d9b12b0636196014acd87d6ebc687e6f
                                txt="_______________________________________________________________________________________________________________"
                                    "_________________________________________________________________________________________________________________"
                                    ,align='L')
 
-                pdf.set_font('Arial', 'B', size=11)
-                pdf.ln(5)
-            else:
-                raise ValueError("No hay actas calificadas")
+            pdf.set_font('Arial', 'B', size=11)
+            pdf.ln(5)
 
-        pdf.ln(5)
-        pdf.multi_cell(190,5,txt="Como resultado de estas calificaciones parciales y sus ponderaciones, la calificación "
+    pdf.ln(5)
+    pdf.multi_cell(190,5,txt="Como resultado de estas calificaciones parciales y sus ponderaciones, la calificación "
                                      "del Trabajo de Grado es: " + str(controller.actas[identificador_acta].nota_trabajo), align = 'L')
-        pdf.set_font('Arial', size=11)
-        pdf.multi_cell(190,5,txt="Observaciones adicionales: " + str(controller.actas[identificador_acta].comentarios_adicionales), align='L' )
+    pdf.set_font('Arial', size=11)
+    pdf.multi_cell(190,5,txt="Observaciones adicionales: " + str(controller.actas[identificador_acta].comentarios_adicionales), align='L' )
 
-        pdf.multi_cell(190, 5,
+    pdf.multi_cell(190, 5,
                            txt="_______________________________________________________________________________________________________________"
                                "_________________________________________________________________________________________________________________"
                                ,align='L')
-        pdf.ln(10)
-        pdf.cell(125,5,txt="______________________________",align='L',ln=0)
-        pdf.cell(100,5,txt="______________________________",align='L',ln=1)
-        pdf.cell(125,5,txt="Firma jurado 1",align='L',ln=0)
-        pdf.cell(100,5,txt="Firma jurado 2",align='L',ln=1)
+    pdf.ln(10)
+    pdf.cell(125,5,txt="______________________________",align='L',ln=0)
+    pdf.cell(100,5,txt="______________________________",align='L',ln=1)
+    pdf.cell(125,5,txt="Firma jurado 1",align='L',ln=0)
+    pdf.cell(100,5,txt="Firma jurado 2",align='L',ln=1)
 
 
 
-        enviar_calificacion = st.button('Generar PDF')
-        nombre = st.text_input('Nombre del acta')
-        if enviar_calificacion:
-            pdf.output(nombre + '.pdf')
-            st.write('ACTA GENERADA')
-            st.success('El nombre del acta es: '+ str(nombre) + '.pdf')
+    enviar_calificacion = st.button('Generar PDF')
+    nombre = st.text_input('Nombre del acta')
+    if enviar_calificacion:
+        pdf.output(nombre + '.pdf')
+        st.write('ACTA GENERADA')
+        st.success('El nombre del acta es: '+ str(nombre) + '.pdf')
 
-        while numero_act < 10000:
-            numero_act += 1
+    while numero_act < 10000:
+        numero_act += 1
 
 
 

@@ -30,45 +30,15 @@ def jurado_partial(st, controller):
     actas = controller.actas.keys()
     identificador_acta = st.selectbox("Seleccione el identificador del acta por calificar", list(actas))
 
-    with st.expander("Desarrollo y profundidad en el tratamiento del tema"):
+    for i in range(1, len(controller.criterios) + 1):
 
-        identificador_criterio = "1"
-        recolectar_datos_detalle_criterio(st, controller, identificador_criterio, identificador_acta)
-
-    with st.expander("Desafío académico y científico del tema"):
-
-        identificador_criterio = "2"
-        recolectar_datos_detalle_criterio(st, controller, identificador_criterio, identificador_acta)
-
-    with st.expander("Cumplimiento de los objetivos propuestos"):
-        identificador_criterio = "3"
-
-        recolectar_datos_detalle_criterio(st, controller, identificador_criterio, identificador_acta)
-
-    with st.expander("Creatividad e innovación de las soluciones y desarrollos propuestos"):
-        identificador_criterio = "4"
-        recolectar_datos_detalle_criterio(st, controller, identificador_criterio, identificador_acta)
-
-    with st.expander("Validez de los resultados y conclusiones"):
-        identificador_criterio = "5"
-        recolectar_datos_detalle_criterio(st, controller, identificador_criterio, identificador_acta)
-
-    with st.expander("Manejo y procesamiento de la información y bibliografía"):
-        identificador_criterio = "6"
-        recolectar_datos_detalle_criterio(st, controller, identificador_criterio, identificador_acta)
-
-    with st.expander("Calidad y presentación del documento escrito"):
-        identificador_criterio = "7"
-        recolectar_datos_detalle_criterio(st, controller, identificador_criterio, identificador_acta)
-
-    with st.expander("Presentación oral"):
-        identificador_criterio = "8"
-        recolectar_datos_detalle_criterio(st, controller, identificador_criterio, identificador_acta)
+        with st.expander(controller.criterios[i].nombre_criterio):
+            identificador_criterio = str(i)
+            recolectar_datos_detalle_criterio(st, controller, identificador_criterio, identificador_acta)
 
     with st.expander("Comentarios adicionales"):
         comentarios_adicionales = st.text_area("Ingrese las observaciones para aprobar el trabajo de grado o "
                                                "alguna otra observación fuera de los criterios:")
-
 
     if st.button("Enviar calificaciones"):
         if len(controller.actas[identificador_acta].detalles_criterio) != controller.current_length_criterios:

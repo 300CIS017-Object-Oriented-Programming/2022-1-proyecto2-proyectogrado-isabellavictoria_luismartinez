@@ -41,7 +41,7 @@ class Controlador:
 
     def mostrar_criterio(self, identificador_criterio):
 
-        with st.expander("Detalles del Criterio"):
+        with st.expander("Criterio " + str(identificador_criterio)):
             st.subheader("Nombre del criterio")
             st.write(self.criterios[identificador_criterio].nombre_criterio)
 
@@ -53,7 +53,7 @@ class Controlador:
 
     def recolectar_datos_criterio(self, identificador_criterio):
 
-        with st.expander("Recolección de daros del Criterio"):
+        with st.expander("Recolección de datos del Criterio"):
             opcion_nombre = st.radio("¿Desea cambiar el nombre del criterio?", ["Si", "No"])
             if opcion_nombre == "Si":
                 nuevo_nombre = st.text_input("Nuevo nombre del criterio:")

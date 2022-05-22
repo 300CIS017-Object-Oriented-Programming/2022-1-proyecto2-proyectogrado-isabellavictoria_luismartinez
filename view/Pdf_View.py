@@ -71,13 +71,14 @@ def generar_pdf(st, controller):
     pdf.multi_cell(190,5,txt="Como resultado de estas calificaciones parciales y sus ponderaciones, la calificación "
                                      "del Trabajo de Grado es: " + str(controller.actas[identificador_acta].nota_trabajo), align = 'L')
     pdf.set_font('Arial', size=11)
+    pdf.ln(5)
     pdf.multi_cell(190,5,txt="Observaciones adicionales: " + str(controller.actas[identificador_acta].comentarios_adicionales), align='L' )
 
     pdf.multi_cell(190, 5,
                            txt="_______________________________________________________________________________________________________________"
                                "_________________________________________________________________________________________________________________"
                                ,align='L')
-    pdf.ln(10)
+    pdf.ln(15)
     pdf.cell(125,5,txt="______________________________",align='L',ln=0)
     pdf.cell(100,5,txt="______________________________",align='L',ln=1)
     pdf.cell(125,5,txt="Firma jurado 1",align='L',ln=0)

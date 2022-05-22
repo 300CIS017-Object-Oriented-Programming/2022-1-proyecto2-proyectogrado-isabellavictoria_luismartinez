@@ -44,7 +44,7 @@ class MainView:
         # Define lo que habrá en la barra de menu
         with st.sidebar:
             self.menu_actual = option_menu("Menu", ["Asistente","Jurado", "Director@","PDF","About"],
-                                           icons=['bi bi-file-earmark-person', 'bi bi-clipboard-check','bi bi-person-bounding-box','bi bi-file-earmark-pdf', 'bi bi-emoji-sunglasses'], menu_icon="cast", default_index=1)
+                                           icons=['bi bi-file-earmark-person', 'bi bi-clipboard-check','bi bi-person-bounding-box','bi bi-file-earmark-pdf', 'bi bi-emoji-sunglasses'], menu_icon="cast", default_index=0)
 
     def ver_ejemplo(self):
         pass
@@ -68,7 +68,10 @@ class MainView:
         elif self.menu_actual == "Director@":
             director_partial(st, self.controller)
         elif self.menu_actual == "PDF":
-            generar_pdf(st,self.controller)
+            try:
+                generar_pdf(st,self.controller)
+            except ValueError:
+                    st.error("No hay actas creadas o estan sin calificar")
 
 # Main call
 if __name__ == "__main__":

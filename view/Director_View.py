@@ -36,7 +36,7 @@ def director_partial(st, controller):
             criterio = Criterio(len(controller.criterios) + 1, nombre_criterio, descripcion, ponderado/100)
             # se agrega el nuevo criterio al diccionario de criterios del controlador
             controller.criterios[criterio.identificador] = criterio
-            controller.predeterminados_criterio[len(controller.criterios) + 1] = predeterminados
+            controller.predeterminados_criterio[len(controller.criterios)] = predeterminados
             # se suma 1 a la cantidad actual de criterios
             controller.current_length_criterios += 1
             st.success("Se ha agregado con éxito el criterio")

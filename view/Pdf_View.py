@@ -9,6 +9,7 @@ def generar_pdf(st, controller):
         actas = controller.actas.keys()
         identificador_acta = st.selectbox("Seleccione el identificador del acta por calificar", list(actas))
         numero_act = 1
+        # se crea pdf
         pdf = PDF()
         pdf.add_page()
         pdf.set_font('Arial', 'B', size=11)
@@ -42,9 +43,11 @@ def generar_pdf(st, controller):
         pdf.ln(5)
         pdf.set_font('Arial', 'B', size=11)
     else:
+        # excepción para verificar que haya actas para descargar
         raise ValueError("No hay actas creadas actualmente")
     criterios_aux = controller.actas[identificador_acta].criterios
-    for x in range ( 0, len(criterios_aux),1):
+    # se utiliza un ciclo para imprimir los criterios
+    for x in range( 0, len(criterios_aux),1):
         pdf.multi_cell(190, 5,txt=str(controller.actas[identificador_acta].criterios[x + 1].identificador) + '.  ' + str(
         controller.actas[identificador_acta].criterios[x + 1].nombre_criterio),align='L')
         pdf.ln(2)
@@ -66,8 +69,10 @@ def generar_pdf(st, controller):
                 pdf.set_font('Arial', 'B', size=11)
                 pdf.ln(5)
         else:
+            # excepción para verificar que se puedan imprimir los criterios en el ciclo
             raise FileNotFoundError("El acta no tiene criterios calificados")
     pdf.ln(5)
+    # se finaliza el documento
     pdf.multi_cell(190,5,txt="Como resultado de estas calificaciones parciales y sus ponderaciones, la calificación "
                                      "del Trabajo de Grado es: " + str(controller.actas[identificador_acta].nota_trabajo), align = 'L')
     pdf.set_font('Arial', size=11)
@@ -84,8 +89,7 @@ def generar_pdf(st, controller):
     pdf.cell(125,5,txt="Firma jurado 1",align='L',ln=0)
     pdf.cell(100,5,txt="Firma jurado 2",align='L',ln=1)
 
-
-
+    # se crea boton para descargar el PDF
     enviar_calificacion = st.button('Generar PDF')
     nombre = st.text_input('Nombre del acta')
     if enviar_calificacion:

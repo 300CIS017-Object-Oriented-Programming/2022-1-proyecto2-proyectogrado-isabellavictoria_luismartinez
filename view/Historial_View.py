@@ -3,7 +3,10 @@
 def historial_partial(st, controller):
 
     st.title("Historial de actas")
+    # se llaman identificadores de las actas
     keys = list(controller.actas.keys())
+    # se crea un expander por cada acta donde se lista el numero del acta,
+    # el id del estudiante, su nombre, el titulo del trabajo, el tipo, el estado y la nota de cada trabajo
     for i in range(0, len(controller.actas)):
         with st.expander("Acta No. " + keys[i]):
             col1, col2, col3, col4, col5, col6 = st.columns(6)

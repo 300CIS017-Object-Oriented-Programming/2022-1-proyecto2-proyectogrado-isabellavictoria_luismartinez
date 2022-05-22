@@ -7,8 +7,11 @@ from model.Detalle_Criterio import DetalleCriterio
 class Controlador:
     def __init__(self) -> None:
         super().__init__()
+        # Diccionario donde se guardan las actas creadas por el asistente
         self.actas = {}
+        # Tamaño actual del diccionario de actas
         self.current_length_actas = 0
+        # Diccionario en donde se guardan los criterios actuales para la calificación de las actas
         self.criterios = {1: Criterio("1", "Desarrollo y profundidad en el tratamiento del tema",
                                       "", 0.20),
                           2: Criterio("2", "Desafío académico y científico del tema",
@@ -24,7 +27,9 @@ class Controlador:
                           7: Criterio("7", "Calidad y presentación del documento escrito",
                                       "", 0.075),
                           8: Criterio("8", "Presentación oral", "", 0.075)}
+        # Cantidad de criterio utilizados en el momento
         self.current_length_criterios = 8
+        # Diccionario con las opciones de comentarios predeterminados para cada criterio
         self.predeterminados_criterio = {1: ["Se desarrolló apropiadamente el tema y con la profundidad suficiente para su culminación.",
                                                "Se desarolla adecuadamente el tema sin embargo se puede mejorar en profundidad y detalle.",
                                                "Se necesita mejorar el desarrollo del tema y la profundidad con la que se trata."],
@@ -50,19 +55,23 @@ class Controlador:
                                               "La presentación oral es muy extansa y podría abarcar menos aspectos del trabajo",
                                               "La presentación oral es muy breve y no expone los aspectos minímos del trabajo"]}
 
-
+    # funcion utilizada por la view del jurado para dar la calificación de cada criterio con su respectivo ponderado
     def calcular_nota_criterio(self, calificacion1, calificacion2, identificador_criterio):
         ponderado = self.criterios[int(identificador_criterio)].porcentaje_ponderacion
         nota_criterio = ((float(calificacion1) + float(calificacion2)) / 2) * ponderado
 
         return nota_criterio
 
+    # funcion utilizada por el view del jurado para sumar
+    # la calificación de cada criterio y retornar la nota final del trabajo de grado
     def calcular_nota_trabajo(self, identificador_acta):
         nota_trabajo = 0.0
         for i in range(1, len(self.criterios)):
             nota_trabajo += self.actas[identificador_acta].detalles_criterio[str(i)].nota_criterio
         return nota_trabajo
 
+    # procedimiento utilizado por el view del jurado para recolectar la calificacion y los comentarios de cada criterio.
+    # Crea un objeto de clase DetalleCriterio que es luego guardado en la respectiva acta.
     def recolectar_datos_detalle_criterio(self, identificador_criterio, identificador_acta):
 
         calificacion1 = st.number_input("Calificacion 1_" + str(identificador_criterio), 0, 5)
@@ -89,6 +98,7 @@ class Controlador:
                 detalle.nota_criterio = self.calcular_nota_criterio(calificacion1, calificacion2,
                                                                           identificador_criterio)
 
+    # procedimiento utilizado por view del Director para ver los detalles de cada criterio
     def mostrar_criterio(self, identificador_criterio):
 
         with st.expander("Criterio " + str(identificador_criterio)):
@@ -101,6 +111,7 @@ class Controlador:
             st.subheader("Ponderado del criterio")
             st.write(str(self.criterios[identificador_criterio].porcentaje_ponderacion * 100) + "%")
 
+    # procedimiento utilizado por el view del jurado para recolectar los nuevos datos del criterio que se desea modificar
     def recolectar_datos_criterio(self, identificador_criterio):
 
         with st.expander("Recolección de datos del Criterio"):

@@ -86,5 +86,5 @@ Para apreciar un poco mejor la en que está modelado este programa se adjunta el
 observar mejor la información del mismo.
 
 ## UML
-Imagen
+![img_5.png](img_5.png)
 *Link:* https://app.diagrams.net/#G1C4d8zLRvIG92U0l_BIQi7bx682WCfkUp
